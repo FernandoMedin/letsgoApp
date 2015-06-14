@@ -1,0 +1,33 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Sign Up</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeLogin()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="signup(data)">
+        <div class="list">
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Primeiro Nome</span>
+                <input type="text" required placeholder="João" ng-model="data.first_name" name="first_name">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Último Nome</span>
+                <input type="text" required placeholder="Silva" ng-model="data.last_name" name="last_name">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Email</span>
+                <input type="email" required placeholder="john@gmail.com" name="email" ng-model="data.email">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Senha</span>
+                <input type="password" ng-model="data.password" name="password">
+            </label>
+            <label class="item">
+                <button class="button button-block button-positive" type="submit">Inscrever-se</button>
+            </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>
