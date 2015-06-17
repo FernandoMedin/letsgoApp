@@ -1,0 +1,68 @@
+<ion-view>
+    <ion-content>
+    <div class="padding">
+        <div class="card" ui-sref="app.event-type">
+            <div class="item item-text-wrap">
+                <i class="ion-plus"></i>
+                Criar Evento
+            </div>
+        </div>
+        <div ng-repeat="event in events">
+        <div class="list card" ui-sref="app.event({ id: event.id })">
+
+            <div class="item item-avatar event">
+                <img ng-if="event.owner.facebook_id" ng-src="http://graph.facebook.com/v2.3/{{ event.owner.facebook_id }}/picture">
+                <img ng-if="!event.owner.facebook_id" src="img/user.png">
+                <div class="col">
+                    <h2>{{ event.name }}</h2>
+                    <p>{{ event.description }}</p>
+                </div>
+            </div>
+
+                <div class="row event--information">
+                    <div class="event-info--item date">
+                        <i class="mdi mdi-calendar-check"></i>
+                        {{ event.date | date }} - {{ event.time }}
+                    </div>
+                    <div class="event-info--item place">
+                        <i class="mdi mdi-map-marker-radius"></i>
+                        {{ event.place }}
+                    </div>
+                </div>
+            <a class="event--people item" ui-sref="app.profile">
+                <div class="row">
+                    <div class="event-people--item positive event--going col col-30">
+                        <div class="col">
+                            <i class="icon ion-thumbsup"></i>
+                        </div>
+                        <div class="col">
+                            5 Irão
+                        </div>
+                    </div>
+                    <div class="event-people--item event--maybe app--primary col col-30">
+                        <div class="col">
+                            <i class="ion-help"></i>
+                        </div>
+                        <div class="col">
+                            5 Talvez
+                        </div>
+                    </div>
+                    <div class="event-people--item event--maybe assertive col col-30">
+                        <div class="col">
+                            <i class="ion-email-unread"></i>
+                        </div>
+                        <div class="col">
+                            5 Invited
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+        </div>
+        <div ng-if="events.length == 0">
+            <p>Nenhum Evento encontrado</p>
+        </div>
+    </div>
+    </ion-content>
+</ion-view>

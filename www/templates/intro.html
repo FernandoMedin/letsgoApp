@@ -1,31 +1,36 @@
-<div class="bar bar-header bar-app bar-brand">
-    <img src="img/logo-white.png" alt="" class="logo">
-    <!-- <h1 class="title">Sign In</h1> -->
-</div>
-<div class="content">
-    <div class="list">
-        <form ng-submit="login()">
-            <label class="item item-input">
-                <input type="email" required placeholder="Email" name="email" ng-model="email">
-            </label>
-            <label class="item item-input">
-                <input type="password" required placeholder="Senha" name="password" ng-model="password">
-            </label>
-            <button class="button button-full button-outline button-app" type="submit">
-                Entrar
-            </button>
-        </form>
-        <br>
-        <p class="center">
-             Ainda não tem uma conta? <a href="#/login" ng-click="signupModal()"> Inscreva-se Agora </a>
-        </p>
+<div class="login">
+    <div class="">
+        <div class="content padding">
+            <img src="img/logo-white.png" alt="" class="logo">
+            <h2 class="title light">Marque um evento com sua galera</h2>
+            <form ng-submit="login()">
+                <div class="list login--form">
+                    <input class="input-login" type="email" required placeholder="Email" name="email" ng-model="email">
+                    <input class="input-login" type="password" required placeholder="Senha" name="password" ng-model="password">
+                    <button class="button button-block button-app" type="submit">
+                        Entrar
+                    </button>
+                </div>
+                <br>
+                <h4 class="center light">
+                    Ainda não tem uma conta?
+                    <p>
+                        <a href="#/login" ng-click="signupModal()"> Inscreva-se Agora </a>
+                    </p>
+                </h4>
+            </form>
+            <div class="padding">
+                <div class="signup-or-separator">
+                    <hr>
+                </div>
+                <!-- <button ng-click="authenticate('facebook')" class="button button-block"> -->
+                    <!-- Connect with Facebook -->
+                <!-- </button> -->
+                <button class="button button-block button-facebook" ng-click="authenticate('facebook')" style="border:none">
+                    <i class="mdi mdi-facebook"></i>
+                    <strong>Entrar com Facebook</strong>
+                </button>
+            </div>
+        </div>
     </div>
-    <div class="signup-or-separator">
-        <h4 class="text">ou</h4>
-        <hr>
-    </div>
-    <button class="button button-full button-facebook" ng-click="authenticate('facebook')">
-        <i class="mdi mdi-facebook"></i>
-        <strong>Entrar com Facebook</strong>
-    </button>
 </div>

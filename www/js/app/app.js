@@ -7,10 +7,14 @@
 angular.module('letsgo',
     ['ionic'
     ,'satellizer'
+    ,'chieffancypants.loadingBar'
+    ,'ngAnimate'
+    ,'letsgo.share'
     ,'letsgo.menu'
     ,'letsgo.login'
     ,'letsgo.dashboard'
     ,'letsgo.profile'
+    ,'letsgo.org'
     ,'letsgo.event'
     ])
 
@@ -27,71 +31,118 @@ angular.module('letsgo',
         }
     });
 })
-
 .config(function($stateProvider, $urlRouterProvider) {
-    $stateProvider
 
+    $stateProvider
     .state('intro', {
         url: '/login'
-      , templateUrl: "templates/intro.html"
+      , templateUrl: 'templates/intro.html'
       , controller: 'LoginController'
     })
     .state('app', {
         url: "/app",
         abstract: true,
-        templateUrl: "templates/menu.html",
+        templateUrl: 'templates/menu.html',
         controller: 'MenuController'
     })
     .state('app.dashboard', {
-        url: "/dashboard"
+        url: '/dashboard'
       , authenticate: true
       , views: {
             'menuContent': {
-                templateUrl: "templates/dashboard.html"
-              , controller: "DashboardController"
+                templateUrl: 'templates/dashboard.html'
+              , controller: 'DashboardController'
             }
         }
     })
     .state('app.events', {
-        url: "/events"
+        url: '/events'
+      , cache: false
       , authenticate: true
       , views: {
             'menuContent': {
-                templateUrl: "templates/events.html"
-              , controller: "EventController"
+                templateUrl: 'templates/events/events.html'
+              , controller: 'EventController'
             }
         }
     })
+    .state('app.event-type', {
+        url: '/event-type'
+      , authenticate: true
+      , views: {
+          'menuContent': {
+              templateUrl: 'templates/events/event.type.html'
+            , controller: 'EventController'
+          }
+      }
+    })
+    .state('app.event', {
+        url: '/event/:id'
+      , authenticate: true
+      , views: {
+          'menuContent': {
+              templateUrl: 'templates/events/event.html'
+            , controller: 'EventController'
+          }
+      }
+    })
     .state('app.profile', {
-        url: "/profile",
-        views: {
+        url: "/profile"
+      , authenticate: true
+      , views: {
             'menuContent': {
-                templateUrl: "templates/profile.html",
-                controller: 'ProfileController'
+                templateUrl: 'templates/profile.html'
+              , controller: 'ProfileController'
             }
         }
+    })
+    .state('app.friends', {
+        url: "/friends"
+      , authenticate: true
+      , views: {
+          'menuContent': {
+              templateUrl: 'templates/friends.html'
+          }
+      }
+    })
+    .state('app.settings', {
+        url: '/settings'
+      , views: {
+          'menuContent': {
+              templateUrl: 'templates/settings.html'
+          }
+      }
     });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
 })
-.config(function ($ionicConfigProvider, $authProvider) {
+.constant('$', {
+    'baseUrl': 'https://shrouded-castle-8160.herokuapp.com/'
+})
+.config(function($authProvider) {
+
 
     // Enable native scrolls for Android platform only,
     // as you see, we're disabling jsScrolling to achieve this.
-    if(ionic.Platform.isAndroid())
-        $ionicConfigProvider.scrolling.jsScrolling(true);
+    // if(ionic.Platform.isAndroid())
+        // $ionicConfigProvider.scrolling.jsScrolling(true);
 
-    if (ionic.Platform.isIOS() || ionic.Platform.isAndroid())
-        $authProvider.platform = 'mobile';
-
+    // Configuration common for all providers.
     var commonConfig = {
-        popupOptions: {
-            location: 'no',
-            toolbar: 'no',
-            width: window.screen.width,
-            height: window.screen.height
-        },
+      // Popup should expand to full screen with no location bar/toolbar.
+      popupOptions: {
+        location: 'no',
+        toolbar: 'no',
+        width: window.screen.width,
+        height: window.screen.height
+      }
     };
+
+    if (ionic.Platform.isIOS() || ionic.Platform.isAndroid()) {
+        $authProvider.platform = 'mobile';
+        commonConfig.redirectUri = 'http://localhost/';
+    }
+
 
     // $authProvider.baseUrl = 'http://localhost:8000/';
     $authProvider.baseUrl = 'https://shrouded-castle-8160.herokuapp.com/';
@@ -103,11 +154,11 @@ angular.module('letsgo',
     $authProvider.authToken = 'Token';
     $authProvider.facebook(angular.extend({}, commonConfig, {
         clientId: '1393877900943102',
-        url: '/auth/facebook/'
+        responseType: 'token'
     }));
 })
 .run(function($rootScope, $state, $auth){
-    $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
         if(toState.authenticate === true){
             if($auth.isAuthenticated() === false) {
                 $state.transitionTo('intro');

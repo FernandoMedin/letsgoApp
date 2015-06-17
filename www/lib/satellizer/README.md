@@ -5,7 +5,7 @@
 [![Join the chat at https://gitter.im/sahat/satellizer](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sahat/satellizer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](http://img.shields.io/travis/sahat/satellizer.svg?style=flat)](https://travis-ci.org/sahat/satellizer)
 [![Test Coverage](http://img.shields.io/codeclimate/coverage/github/sahat/satellizer.svg?style=flat)](https://codeclimate.com/github/sahat/satellizer)
-[![Version](http://img.shields.io/badge/version-0.10.1-orange.svg?style=flat)](https://www.npmjs.org/package/satellizer)
+[![Version](http://img.shields.io/badge/version-0.11.2-orange.svg?style=flat)](https://www.npmjs.org/package/satellizer)
 
 **Live Demo:** [https://satellizer.herokuapp.com](https://satellizer.herokuapp.com)
 
@@ -49,8 +49,13 @@ npm install satellizer
 or use the CDN:
 
 ```html
-<script src="//cdn.jsdelivr.net/satellizer/0.10.1/satellizer.min.js"></script>
+<!--[if lte IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Base64/0.3.0/base64.min.js"></script>
+<![endif]-->
+<script src="//cdn.jsdelivr.net/satellizer/0.11.2/satellizer.min.js"></script>
 ```
+
+**Note:** Sattelizer uses [window.btoa](https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/btoa) and [window.atob](https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/atob) for parsing JWT.  If you still have to support **IE9**, use the Base64 polyfill above.
 
 ## Usage
 
@@ -264,6 +269,19 @@ your server in the following format - `Authorization: Bearer <token>`, then use
 `$authProvider.authHeader` method to override this behavior, e.g. set its value to
 **x-access-token** or another custom header that your backend may require.
 
+## Not sending the JWT for specific requests 
+```
+// This request will NOT send the token as it has skipAuthentication
+$http({
+  url: '/api/endpoint',
+  skipAuthorization: true
+  method: 'GET'
+});
+```
+
+## Updating storage
+To toggle from localStorage and sessionStorage run `$auth.setStorage('sessionStorage');` or `$auth.setStorage('localStorage');`
+
 ## Browser Support
 
 <table>
@@ -277,7 +295,7 @@ your server in the following format - `Authorization: Bearer <token>`, then use
 
     </tr>
     <tr>
-      <td align="center">9+</td>
+      <td align="center">9*</td>
       <td align="center">✓</td>
       <td align="center">✓</td>
       <td align="center">✓</td>
@@ -286,8 +304,7 @@ your server in the following format - `Authorization: Bearer <token>`, then use
   </tbody>
 </table>
 
-**Note:** If you stumble upon a browser version that does not work with *Satellizer* please [open an issue](https://github.com/sahat/satellizer/issues) so I could update the checkmark with the lowest supported version.
-
+__*__ Requires [Base64.js](https://github.com/davidchambers/Base64.js/) polyfill.
 
 ## How It Works
 
@@ -331,10 +348,9 @@ authentication process works.
 <hr>
 
 <img src="http://indonesia-royal.com/wp-content/uploads/2014/06/twitter-bird-square-logo.jpg" height="70">
-- Sign in at [https://dev.twitter.com](https://dev.twitter.com/)
-- From the profile picture dropdown menu select **My Applications**
-- Click **Create a new application**
-- Enter your application name, website and description
+- Sign in at [https://apps.twitter.com](https://apps.twitter.com/)
+- Click on **Create New App**
+- Enter your *Application Name*, *Description* and *Website*
 - For **Callback URL**: *http://127.0.0.1:3000*
 - Go to **Settings** tab
 - Under *Application Type* select **Read and Write** access
@@ -574,14 +590,13 @@ Removes a JWT from Local Storage.
 
 ## TODO
 
-- [ ] C# (ASP.NET vNext) implementation
-- [ ] Go (Goji) implementation
+- [ ] C# (ASP.NET 5) implementation
+- [x] Go implementation
 - [x] Java (Dropwizard) implementation
 - [x] Node.js (Express) implementation
 - [x] PHP (Laravel) implementation
 - [x] Python (Flask) implementation
 - [x] Ruby (Ruby on Rails) implementation
-- [ ] Scala (Play!) implementation
 
 ## Contributing
 

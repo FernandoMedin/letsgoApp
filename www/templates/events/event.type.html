@@ -1,0 +1,24 @@
+<ion-view>
+    <ion-content>
+        <div class="padding">
+            <br>
+            <ion-radio ng-repeat="type in types" ng-model="data.eventType" ng-value="'{{ type.name }}'">{{ type.name }}</ion-radio>
+            <div ng-if="data.eventType === 'public'">
+                <div class="list list-inset">
+                    <ion-radio ng-repeat="org in user.orgs" ng-model="data.org.myOrgs" ng-value="org.name">{{ org.name }}</ion-radio>
+                    <label class="item item-input">
+                        <input type="text" ng-model="data.org.name" placeholder="Nome da sua Organização">
+                    </label>
+                    <label class="item item-input">
+                        <textarea name="description" ng-model="data.org.description" placeholder="Sobre sua Organização" cols="30" rows="10"></textarea>
+                    </label>
+                </div>
+            </div>
+
+            <br>
+            <button ng-click="newModal()" class="button button-full button-positive">
+                Criar Evento
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

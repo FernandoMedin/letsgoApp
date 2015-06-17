@@ -1,18 +1,35 @@
 angular.module('letsgo.login.controllers', [])
 .controller('LoginController', LoginController);
 
-LoginController.$inject = ['$scope', '$auth', '$ionicModal'];
+LoginController.$inject = ['$scope', '$state', '$auth', '$ionicModal', '$ionicPopup', 'ShareService'];
+function LoginController($scope, $state, $auth, $ionicModal, $ionicPopup, ShareService ){
 
-function LoginController($scope, $auth, $ionicModal){
+    if($auth.isAuthenticated()) {
+        console.log("redirect");
+        $state.transitionTo('app.dashboard');
+    }
+    else
+        ShareService.wakeUpDynos();
 
-    $scope.login = function(){
+    $scope.login = function() {
         $auth.login({
             email: $scope.email
           , password: $scope.password
+        }).then(function(response) {
+            // Successful login
+            console.log(response);
+        }).catch(function(err){
+            console.log(JSON.stringify(err));
+            if(err.status === 400){
+                $ionicPopup.alert({
+                    title: 'Erro',
+                    template: err.data.non_field_errors
+                });
+            }
         });
     };
 
-    $scope.signup = function(form){
+    $scope.signup = function(form) {
         $auth.signup(form).then(function(data){
             console.log(data);
             $scope.closeLogin();
@@ -26,7 +43,7 @@ function LoginController($scope, $auth, $ionicModal){
             $scope.authenticated = true;
             console.log(data);
         }, function(error) {
-            console.log(error);
+            console.log(JSON.stringify(error));
         });
     };
 

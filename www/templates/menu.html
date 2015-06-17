@@ -1,53 +1,60 @@
 <ion-side-menus enable-menu-with-back-views="false">
-  <ion-side-menu-content>
-    <div class="tabs-striped tabs-top tabs-background-app tabs-color-light">
-      <div class="tabs">
-        <a class="tab-item active" href="#">
-          <i class="icon ion-ios-list"></i>
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-ios-people"></i>
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-gear-a"></i>
-        </a>
-      </div>
-    </div>
-    <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
+    <ion-side-menu-content>
+        <ion-tabs class="tabs-striped tabs-top tabs-background-app tabs-positive">
 
-      <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-        </button>
-      </ion-nav-buttons>
-    </ion-nav-bar>
-    <ion-nav-view name="menuContent"></ion-nav-view>
-  </ion-side-menu-content>
-  <ion-side-menu side="left">
-    <ion-header-bar class="bar-stable">
-      </ion-header-bar>
-    <ion-content>
-      <ion-list>
-      <ion-item menu-close class="brand--profile" href="#/app/profile">
-          <a class="item item-avatar" href="/#/app/profile" style="border:none">
-            <img ng-src="http://graph.facebook.com/v2.3/{{ user.facebook_id }}/picture">
-            <h2> {{ user.first_name }} </h2>
-            <p> {{ user.last_name }} </p>
-          </a>
-        </ion-item>
-        <ion-item menu-close href="#/app/dashboard">
-          Feed
-        </ion-item>
-        <ion-item menu-close href="#/app/events">
-          Events
-        </ion-item>
-        <ion-item menu-close ng-click="logout()">
-          <i class="mdi mdi-power"></i>
-          Logout
-        </ion-item>
+            <ion-tab title="Home" icon="ion-ios-list" ui-sref="app.dashboard">
+                <ion-nav-view name="menuContent"></ion-nav-view>
+            </ion-tab>
 
-      </ion-list>
-    </ion-content>
-  </ion-side-menu>
+            <ion-tab title="About" icon="ion-ios-people" ui-sref="app.friends">
+                <ion-nav-view name="friends"></ion-nav-view>
+            </ion-tab>
+
+            <ion-tab title="Contact" icon="ion-gear-a" ui-sref="app.settings">
+                <ion-nav-view name="settings"></ion-nav-view>
+            </ion-tab>
+
+        </ion-tabs>
+        <ion-nav-bar class="bar-stable">
+            <ion-nav-back-button></ion-nav-back-button>
+
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left"> </button>
+                <div class="search--bar">
+                    <div class="bar bar-header item-input-inset">
+                        <label class="item-input-wrapper">
+                            <i class="icon ion-ios-search placeholder-icon"></i>
+                            <input type="search" placeholder="Procurar lugares">
+                        </label>
+                    </div>
+                </div>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+
+        <ion-nav-view name="menuContent" class="has-header"></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left">
+        <ion-header-bar class="bar-stable"></ion-header-bar>
+        <ion-content>
+            <ion-list>
+                <ion-item menu-close class="brand--profile" href="#/app/profile">
+                    <span ng-if="user.facebook_id" class="item item-avatar" style="border:none">
+                        <img ng-src="http://graph.facebook.com/v2.3/{{ user.facebook_id }}/picture">
+                        <h2> {{ user.first_name }} {{ user.last_name }} </h2>
+                        <p> Ver seu perfil </p>
+                    </span>
+                    <span ng-if="!user.facebook_id" class="item" style="border:none">
+                        <h2> {{ user.first_name }} {{ user.last_name }} </h2>
+                        <p> Ver seu perfil </p>
+                    </span>
+                </ion-item>
+                <ion-item menu-close href="#/app/dashboard"> Feed </ion-item>
+                <ion-item menu-close href="#/app/events"> Events </ion-item>
+                <ion-item menu-close ng-click="logout()">
+                    <i class="mdi mdi-power"></i>
+                    Logout
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
 </ion-side-menus>

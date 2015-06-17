@@ -1,0 +1,38 @@
+<ion-view>
+    <ion-content>
+        <div class="card">
+            <div class="item item-avatar event">
+                    <img ng-if="event.owner.facebook_id" ng-src="http://graph.facebook.com/v2.3/{{ event.owner.facebook_id }}/picture">
+                    <img ng-if="!event.owner.facebook_id" src="img/user.png">
+                <div class="col">
+                    <h1> {{ event.name }} </h1>
+                    <hr>
+                    {{ event.description }}
+                </div>
+            </div>
+            <div class="row event--information">
+                <div class="event-info--item date">
+                    <i class="mdi mdi-calendar-check"></i>
+                    {{ event.date | date }} - {{ event.time }}
+                </div>
+                <div class="event-info--item place">
+                    <i class="mdi mdi-map-marker-radius"></i>
+                    {{ event.place }}
+                </div>
+            </div>
+            <div class="col center">
+                <p>Amigos que vão</p>
+            </div>
+            <div class="col">
+                <button class="button button-full button-positive">
+                    <i class="icon ion-happy"></i>
+                    Eu Vou!
+                </button>
+                <button class="button button-full button-assertive">
+                    <i class="icon ion-sad"></i>
+                    Talvez
+                </button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

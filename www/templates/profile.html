@@ -1,6 +1,10 @@
-<ion-view view-title="Profile">
+<ion-view>
   <ion-content>
-    <h1>Profile</h1>
-    <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+  <div class="padding">
+      <div class="">
+        <img ng-if="user.facebook_id" ng-src="http://graph.facebook.com/v2.3/{{ user.facebook_id }}/picture">
+        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+      </div>
+  </div>
   </ion-content>
 </ion-view>

@@ -7675,16 +7675,247 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.app--primary {
+  color: #FD8028; }
+
 .tabs-striped.tabs-background-app .tabs {
   background-color: #FD8028;
   background-image: none; }
 
-.bar-brand {
-  position: relative;
-  height: 80px; }
-  .bar-brand .logo {
-    margin: auto;
-    max-width: 190px; }
+.bubblingG {
+  text-align: center;
+  width: 80px;
+  height: 50px; }
+
+.bubblingG span {
+  display: inline-block;
+  vertical-align: middle;
+  width: 10px;
+  height: 10px;
+  margin: 25px auto;
+  background: #FF8C00;
+  border-radius: 50px;
+  -moz-border-radius: 50px;
+  -moz-animation: bubblingG 0.5s infinite alternate;
+  -webkit-border-radius: 50px;
+  -webkit-animation: bubblingG 0.5s infinite alternate;
+  -o-border-radius: 50px;
+  -o-animation: bubblingG 0.5s infinite alternate;
+  -ms-border-radius: 50px;
+  -ms-animation: bubblingG 0.5s infinite alternate;
+  border-radius: 50px;
+  animation: bubblingG 0.5s infinite alternate; }
+
+#bubblingG_1 {
+  -moz-animation-delay: 0.3s;
+  -webkit-animation-delay: 0.3s;
+  -o-animation-delay: 0.3s;
+  -ms-animation-delay: 0.3s;
+  animation-delay: 0.3s; }
+
+#bubblingG_2 {
+  -moz-animation-delay: 0.15s;
+  -webkit-animation-delay: 0.15s;
+  -o-animation-delay: 0.15s;
+  -ms-animation-delay: 0.15s;
+  animation-delay: 0.15s; }
+
+#bubblingG_3 {
+  -moz-animation-delay: 0s;
+  -webkit-animation-delay: 0s;
+  -o-animation-delay: 0s;
+  -ms-animation-delay: 0s;
+  animation-delay: 0s; }
+
+@-webkit-keyframes bubblingG {
+  0% {
+    width: 10px;
+    height: 10px;
+    background-color: #FF8C00;
+    transform: translateY(0);
+    -webkit-transform: translateY(0); }
+
+  100% {
+    width: 24px;
+    height: 24px;
+    background-color: #FFFFFF;
+    transform: translateY(-21px);
+    -webkit-transform: translateY(-21px); } }
+
+@-o-keyframes bubblingG {
+  0% {
+    width: 10px;
+    height: 10px;
+    background-color: #FF8C00;
+    transform: translateY(0);
+    -o-transform: translateY(0); }
+
+  100% {
+    width: 24px;
+    height: 24px;
+    background-color: #FFFFFF;
+    transform: translateY(-21px);
+    -o-transform: translateY(-21px); } }
+
+@-ms-keyframes bubblingG {
+  0% {
+    width: 10px;
+    height: 10px;
+    background-color: #FF8C00;
+    transform: translateY(0);
+    -ms-transform: translateY(0); }
+
+  100% {
+    width: 24px;
+    height: 24px;
+    background-color: #FFFFFF;
+    transform: translateY(-21px);
+    -ms-transform: translateY(-21px); } }
+
+@-moz-keyframes bubblingG {
+  0% {
+    width: 10px;
+    height: 10px;
+    background-color: #FF8C00;
+    transform: translateY(0);
+    -moz-transform: translateY(0); }
+
+  100% {
+    width: 24px;
+    height: 24px;
+    background-color: #FFFFFF;
+    transform: translateY(-21px);
+    -moz-transform: translateY(-21px); } }
+
+@keyframes bubblingG {
+  0% {
+    width: 10px;
+    height: 10px;
+    background-color: #FF8C00;
+    transform: translateY(0); }
+
+  100% {
+    width: 24px;
+    height: 24px;
+    background-color: #FFFFFF;
+    transform: translateY(-21px); } }
+
+#loading-bar .bar {
+  height: 1px;
+  border: none;
+  padding: 1.5px; }
+
+/* Make clicks pass-through */
+#loading-bar, #loading-bar-spinner {
+  pointer-events: none;
+  -webkit-pointer-events: none;
+  -webkit-transition: 350ms linear all;
+  -moz-transition: 350ms linear all;
+  -o-transition: 350ms linear all;
+  transition: 350ms linear all; }
+
+#loading-bar.ng-enter, #loading-bar.ng-leave.ng-leave-active, #loading-bar-spinner.ng-enter, #loading-bar-spinner.ng-leave.ng-leave-active {
+  opacity: 0; }
+
+#loading-bar.ng-enter.ng-enter-active, #loading-bar.ng-leave, #loading-bar-spinner.ng-enter.ng-enter-active, #loading-bar-spinner.ng-leave {
+  opacity: 1; }
+
+#loading-bar .bar {
+  -webkit-transition: width 350ms;
+  -moz-transition: width 350ms;
+  -o-transition: width 350ms;
+  transition: width 350ms;
+  background: #387ef5;
+  position: fixed;
+  z-index: 10002;
+  /* top: 90px; */
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 0px;
+  border-bottom-right-radius: 1px;
+  border-top-right-radius: 1px; }
+
+/* Fancy blur effect */
+#loading-bar .peg {
+  position: absolute;
+  width: 70px;
+  right: 0;
+  top: 0;
+  height: 2px;
+  opacity: .45;
+  -moz-box-shadow: #29d 1px 0 6px 1px;
+  -ms-box-shadow: #29d 1px 0 6px 1px;
+  -webkit-box-shadow: #29d 1px 0 6px 1px;
+  box-shadow: #29d 1px 0 6px 1px;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%; }
+
+#loading-bar-spinner {
+  display: block;
+  position: fixed;
+  z-index: 10002;
+  top: 46%;
+  left: 46%; }
+
+#loading-bar-spinner .spinner-icon {
+  width: 14px;
+  height: 14px;
+  border: solid 2px transparent;
+  border-top-color: #29d;
+  border-left-color: #29d;
+  border-radius: 10px;
+  -webkit-animation: loading-bar-spinner 400ms linear infinite;
+  -moz-animation: loading-bar-spinner 400ms linear infinite;
+  -ms-animation: loading-bar-spinner 400ms linear infinite;
+  -o-animation: loading-bar-spinner 400ms linear infinite;
+  animation: loading-bar-spinner 400ms linear infinite; }
+
+@-webkit-keyframes loading-bar-spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@-moz-keyframes loading-bar-spinner {
+  0% {
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg); }
+
+  100% {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@-o-keyframes loading-bar-spinner {
+  0% {
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg); }
+
+  100% {
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@-ms-keyframes loading-bar-spinner {
+  0% {
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg); }
+
+  100% {
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@keyframes loading-bar-spinner {
+  0% {
+    transform: rotate(0deg);
+    transform: rotate(0deg); }
+
+  100% {
+    transform: rotate(360deg);
+    transform: rotate(360deg); } }
 
 .bar-app {
   border-color: #f06402;
@@ -7723,6 +7954,10 @@ a:visited {
 
 .center {
   text-align: center; }
+
+.search--bar .bar-header {
+  align-items: flex-end;
+  border: none; }
 
 .brand--profile > .item-content {
   padding: 0px; }
@@ -7789,6 +8024,41 @@ a:visited {
   box-shadow: none;
   color: #fff; }
 
+.login {
+  background-image: url('../img/reunion-blur.jpg');
+  background-size: cover;
+  margin: auto;
+  text-align: center; }
+  .login .logo {
+    margin: auto;
+    max-width: 100%; }
+  .login .title {
+    margin-top: 0px;
+    font-weight: 100; }
+  .login button {
+    display: inline-block;
+    height: 50px;
+    border-radius: 50px;
+    font-size: 20px; }
+  .login .login--form {
+    background: none;
+    text-align: center;
+    margin: auto; }
+    .login .login--form input.input-login {
+      display: inline-block;
+      width: 100%;
+      background: none;
+      border: 1px solid #FD8028;
+      border-radius: 50px;
+      font-size: 20px;
+      height: 50px;
+      color: white;
+      text-align: center;
+      margin-bottom: 10px;
+      transition: all .3s ease; }
+      .login .login--form input.input-login:focus {
+        border-color: #fff; }
+
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px white inset; }
 
@@ -7808,3 +8078,52 @@ input:-webkit-autofill {
     border: 0;
     height: 1px;
     background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.75), transparent); }
+
+.dashboard {
+  text-align: center; }
+  .dashboard .dashboard--icon {
+    font-size: 114px; }
+  .dashboard .places {
+    color: #387ef5; }
+
+hr {
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+
+.category-scroll {
+  margin-left: -15px;
+  margin-top: 20px;
+  margin-bottom: -6px; }
+
+.event {
+  border: none; }
+
+.event-type--icon .icon {
+  color: #387ef5;
+  font-size: 114px; }
+
+.event-side--description {
+  padding-top: 10px;
+  text-align: right; }
+
+.event--information {
+  margin: auto; }
+  .event--information .event-info--item {
+    padding-left: 20px; }
+  .event--information i {
+    font-size: 18px; }
+
+.event--people {
+  text-align: center;
+  padding: 0px; }
+
+.event-people--item {
+  text-align: center;
+  padding: 0px; }
+  .event-people--item i {
+    font-size: 28px; }
+
+.event--place {
+  font-size: 20px; }

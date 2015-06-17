@@ -1,13 +1,21 @@
 angular.module('letsgo.profile.services', [])
 .service('ProfileService', ProfileService);
 
-ProfileService.$inject = ['$http', '$auth'];
-function ProfileService($http, $auth){
+ProfileService.$inject = ['$http', '$auth', '$'];
+function ProfileService($http, $auth, $){
 
-    // console.log($auth);
-    var baseUrl = 'https://shrouded-castle-8160.herokuapp.com';
+    this.current;
 
     this.getProfile = function(){
-        return $http.get(baseUrl+'/current/');
+        return $http.get($.baseUrl+'current/');
+    };
+
+    this.getUser = function(id){
+        return $http.get($.baseUrl+'users/'+id);
+    };
+
+    this.getCurrent = function(){
+        console.log(this.current);
+        return this.current;
     };
 }

@@ -1,5 +1,36 @@
-<ion-view view-title="Events">
-  <ion-content>
-    <h1>Events</h1>
-  </ion-content>
+<ion-view>
+    <ion-content>
+    <h1>Eventos</h1>
+    <!-- <a href="#/event/new"> -->
+        <div class="card" ui-sref="app.eventNew">
+            <div class="item item-text-wrap">
+                <i class="ion-plus"></i>
+                Criar Evento
+            </div>
+        </div>
+    <!-- </a> -->
+    <div ng-repeat="event in events">
+      <div class="list card">
+
+          <div class="item item-avatar">
+              <img src="avatar.jpg">
+              <h2>{{ event.name }}</h2>
+              <p>Nine Inch Nails</p>
+          </div>
+
+          <div class="item item-image">
+              <img src="cover.jpg">
+          </div>
+
+          <a class="item item-icon-left assertive" href="#">
+              <i class="icon ion-music-note"></i>
+              Start listening
+          </a>
+
+      </div>
+    </div>
+    <div ng-if="events.length == 0">
+        <h1>Nenhum Evento encontrado</h1>
+    </div>
+    </ion-content>
 </ion-view>
