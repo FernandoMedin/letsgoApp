@@ -7,6 +7,7 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 var browserSync = require('browser-sync');
+var deploy = require('gulp-gh-pages');
 
 var paths = {
     sass : ['./scss/**/*.scss', './scss/**/*.sass']
@@ -58,6 +59,11 @@ gulp.task('install', ['git-check'], function() {
     .on('log', function(data) {
         gutil.log('bower', gutil.colors.cyan(data.id), data.message);
     });
+});
+
+gulp.task('deploy', function(){
+    return gulp.src('./www/**/*')
+    .pipe(deploy());
 });
 
 gulp.task('git-check', function(done) {

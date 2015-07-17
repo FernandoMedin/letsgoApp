@@ -140,7 +140,7 @@ angular.module('letsgo',
 
     if (ionic.Platform.isIOS() || ionic.Platform.isAndroid()) {
         $authProvider.platform = 'mobile';
-        commonConfig.redirectUri = 'http://localhost/';
+        // commonConfig.redirectUri = 'http://localhost/';
     }
 
 
@@ -154,6 +154,7 @@ angular.module('letsgo',
     $authProvider.authToken = 'Token';
     $authProvider.facebook(angular.extend({}, commonConfig, {
         clientId: '1393877900943102',
+        url: '/auth/facebook',
         responseType: 'token'
     }));
 })
