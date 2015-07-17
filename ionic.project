@@ -1,9 +1,0 @@
-{
-  "name": "letsgo",
-  "app_id": "f7471ea0",
-  "gulpStartupTasks": [
-    "sass",
-    "script",
-    "watch"
-  ]
-}
